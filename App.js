@@ -91,11 +91,21 @@ writeableStream.on('finish',function(){
 	console.log("Write Completed");
 });
 */
-var fs = require('fs');
+/*var fs = require('fs');
 var readableStream = fs.createReadStream('in.txt');
 var writeableStream = fs.createWriteStream('out.txt');
 readableStream.pipe(writeableStream);
+*/
+var server = require('./server');
+var router = require('./router');
+var handler = require('./handler');
 
+var handle = {};
+handle["/"] = handler.home;
+handle["/home"] = handler.home;
+handle["/review"] = handler.review;
+server.startserver(router.route,handle);
+//router.route =route;
 
  
 
